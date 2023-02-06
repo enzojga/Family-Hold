@@ -8,7 +8,7 @@ export default function PrivateRoute({ children }) {
     if(window.innerWidth > 770) {
         return <Navigate to='/' replace />;
     };
-    if (userData.token) {
+    if (userData?.token) {
         return (
             <>
                 <Header />

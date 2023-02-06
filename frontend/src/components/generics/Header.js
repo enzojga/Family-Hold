@@ -10,7 +10,7 @@ export default function Header() {
     return(
         <HeaderContainer onClick={() => navigate("/home")}>
             <img src={logoLight} alt='logo'/>
-            <h2>Olá, {userData.username}</h2>
+            <h2>Olá, {userData?.username}</h2>
         </HeaderContainer>
     )
 }

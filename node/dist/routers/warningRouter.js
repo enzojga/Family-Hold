@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const warningsController_1 = require("../controllers/warningsController");
+const express_1 = require("express");
+const validation_middleware_1 = require("../middlewares/validation-middleware");
+const warningSchema_1 = require("../schemas/warningSchema");
+const warningRouter = (0, express_1.Router)();
+warningRouter.post("/:boardId", (0, validation_middleware_1.validateBody)(warningSchema_1.warningBodySchema), (0, validation_middleware_1.validateParams)(warningSchema_1.warningParamsSchema), warningsController_1.createWarning);
+warningRouter.get("/:boardId", (0, validation_middleware_1.validateParams)(warningSchema_1.warningParamsSchema), warningsController_1.getBoardWarnings);
+exports.default = warningRouter;

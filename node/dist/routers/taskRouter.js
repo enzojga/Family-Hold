@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const validation_middleware_1 = require("../middlewares/validation-middleware");
+const taskSchema_1 = require("../schemas/taskSchema");
+const messageSchema_1 = require("../schemas/messageSchema");
+const taskController_1 = require("../controllers/taskController");
+const taskRouter = (0, express_1.Router)();
+taskRouter.post("/:boardId", (0, validation_middleware_1.validateBody)(taskSchema_1.taskSchemaBody), (0, validation_middleware_1.validateParams)(messageSchema_1.messageParamsSchema), taskController_1.createTask);
+taskRouter.get("/:boardId", (0, validation_middleware_1.validateParams)(messageSchema_1.messageParamsSchema), taskController_1.getBoardTasks);
+taskRouter.post("/join/:taskId", (0, validation_middleware_1.validateParams)(taskSchema_1.taskSchemaParams), taskController_1.joinTask);
+taskRouter.delete("/:taskId", (0, validation_middleware_1.validateParams)(taskSchema_1.taskSchemaParams), taskController_1.deleteTask);
+exports.default = taskRouter;

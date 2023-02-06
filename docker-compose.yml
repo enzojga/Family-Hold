@@ -18,18 +18,12 @@ services:
     volumes:
       - volume_banco:/var/lib/postgresql/data
 
-  services:
-  cache:
-    image: redis:6.2-alpine
-    restart: always
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
     ports:
-      - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
-    volumes: 
-      - cache:/data
-  volumes:
-    cache:
-      driver: local
+      - '49153:49153'
 
   app_node:
     build: ./node

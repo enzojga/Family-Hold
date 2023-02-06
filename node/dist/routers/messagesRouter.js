@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const messagesController_1 = require("../controllers/messagesController");
+const express_1 = require("express");
+const validation_middleware_1 = require("../middlewares/validation-middleware");
+const messageSchema_1 = require("../schemas/messageSchema");
+const messagesRouter = (0, express_1.Router)();
+messagesRouter.post("/:boardId", (0, validation_middleware_1.validateBody)(messageSchema_1.messageBodySchema), (0, validation_middleware_1.validateParams)(messageSchema_1.messageParamsSchema), messagesController_1.sendMessage);
+messagesRouter.get("/:boardId", (0, validation_middleware_1.validateParams)(messageSchema_1.messageParamsSchema), messagesController_1.getMessages);
+exports.default = messagesRouter;
