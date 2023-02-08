@@ -2,7 +2,6 @@ import { AuthenticatedRequest } from "../middlewares/autenticationMiddleware";
 import { Response } from "express";
 import httpStatus from "http-status";
 import { boardService } from "../services/boardService";
-import { Console } from "console";
 
 export const createBoard = async (req: AuthenticatedRequest, res: Response) => {
     const { name, icon, invite } = req.body;
@@ -10,6 +9,7 @@ export const createBoard = async (req: AuthenticatedRequest, res: Response) => {
         const board = await boardService.create(req.userId, name, icon, invite);
         return res.status(httpStatus.CREATED).send(board);
     } catch (err) {
+        console.log(err);
         if(err.name === "ConflictError") {
             return res.sendStatus(httpStatus.CONFLICT);
         }
@@ -22,6 +22,7 @@ export const getBoards = async (req: AuthenticatedRequest, res: Response) => {
         const boards: any = await boardService.getBoardsByUserId(req.userId);
         return res.status(httpStatus.OK).send(boards);
     } catch (err) {
+        console.log(err);
         return res.sendStatus(httpStatus.UNAUTHORIZED);
     }
 }
@@ -45,6 +46,7 @@ export const joinBoard = async (req: AuthenticatedRequest, res: Response) => {
         const joinInfo = await boardService.joinBoard(req.userId, invite)
         return res.status(httpStatus.OK).send(joinInfo);
     } catch (err) {
+        console.log(err);
         if(err.name === "ConflictError") {
             return res.sendStatus(httpStatus.CONFLICT);
         }

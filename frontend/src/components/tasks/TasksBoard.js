@@ -54,9 +54,6 @@ export default function TaskBoard({ id }) {
             {data?.data ? data.data.map(t => <Task task={t} mutation={mutation} deleteTask={deleteTask} />) : ''}
             <ButtonsContainer show={show}>
                 <AlternativeButton>
-                    <span onClick={() => navigate("/board/create/categorie", {state: id})}>Criar categoria</span>
-                </AlternativeButton>
-                <AlternativeButton>
                     <span onClick={() => navigate("/board/create/task", {state: id})}>Criar tarefa</span>
                 </AlternativeButton>
                 <AiFillPlusCircle onClick={ () => { setShow(!show) } }/>

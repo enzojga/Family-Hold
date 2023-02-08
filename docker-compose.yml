@@ -39,6 +39,7 @@ services:
     command: "npm run start"
     depends_on:
       - banco
+      - redis
 
   nginx:
     build: ./nginx

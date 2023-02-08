@@ -13,6 +13,7 @@ const createBoard = async (req, res) => {
         return res.status(http_status_1.default.CREATED).send(board);
     }
     catch (err) {
+        console.log(err);
         if (err.name === "ConflictError") {
             return res.sendStatus(http_status_1.default.CONFLICT);
         }
@@ -26,6 +27,7 @@ const getBoards = async (req, res) => {
         return res.status(http_status_1.default.OK).send(boards);
     }
     catch (err) {
+        console.log(err);
         return res.sendStatus(http_status_1.default.UNAUTHORIZED);
     }
 };
@@ -51,6 +53,7 @@ const joinBoard = async (req, res) => {
         return res.status(http_status_1.default.OK).send(joinInfo);
     }
     catch (err) {
+        console.log(err);
         if (err.name === "ConflictError") {
             return res.sendStatus(http_status_1.default.CONFLICT);
         }

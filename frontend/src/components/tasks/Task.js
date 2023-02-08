@@ -29,7 +29,7 @@ export default function Task({ task, mutation, deleteTask }) {
             <div>
                 <div>
                     <h2>Participantes:</h2>
-                    {task?.UserTask[0]?task?.UserTask.map(u =>  <img src={u.Users.UsersInfo[0].picture || personIcon}/>) : ''}
+                    {task?.UserTask[0]?task?.UserTask.map(u =>  <img src={u.Users?.UsersInfo[0]?.picture || personIcon}/>) : ''}
                 </div>
                 <span>{day}</span>
             </div>
